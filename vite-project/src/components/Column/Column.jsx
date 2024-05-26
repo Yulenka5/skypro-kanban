@@ -1,3 +1,4 @@
+import './Column.Styles.css'
 import Card from "../Card/Card";
 
 function Column() {
