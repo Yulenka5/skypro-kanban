@@ -1,4 +1,3 @@
-import Input from "../input";
 import "./Calendar.Styles.css";
 
 function Calendar() {
@@ -79,7 +78,12 @@ function Calendar() {
             <div className="calendar__cell _other-month _weekend">1</div>
           </div>
         </div>
-        <Input />
+        <input type="hidden" id="datepick_value" value="08.09.2023" />
+      <div className="calendar__period">
+        <p className="calendar__p date-end">
+          Выберите срок исполнения <span className="date-control"></span>.
+        </p>
+      </div>
       </div>
     </div>
   );

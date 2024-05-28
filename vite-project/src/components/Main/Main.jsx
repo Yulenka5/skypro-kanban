@@ -1,6 +1,6 @@
 import "./Main.Styles.css";
 import Column from "../Column/Column";
-import { statusList } from "../../status";
+import { statusList } from "../../data/status";
 
 function Main({ cardList }) {
   return (
@@ -12,7 +12,7 @@ function Main({ cardList }) {
               <Column
                 key={status}
                 title={status}
-                cardList={cards.filter((card) => card.status === status)}
+                cardList={cardList.filter((card) => card.status === status)}
               />
             ))}
           </div>

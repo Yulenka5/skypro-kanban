@@ -4,17 +4,31 @@ import Header from "./components/Header/Header";
 import PopBrowse from "./components/PopBrowse/PopBrowse";
 import PopNewCard from "./components/PopNewCard/PopNewCard";
 import PopExit from "./components/PopExit/PopExit";
-import { useState } from "react";
-import { cardLists } from "./data";
-
+import { useEffect, useState } from "react";
+import { cardList } from "./data/data";
 
 
 function App() {
-const [cardList, setCardList] = useState(cardLists)
+  const [isLoading, setIsLoading] = useState(true);
+  const [cards, setCards] = useState(cardList)
+ 
 
-function addCardList (newCardList) {
-  setCardList ([...cardList, newCardList])
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000)
+  }, []);
+
+  function addCard () {
+const newTask = {
+  id: cards.length + 1,
+  topic: "Web Design",
+  title: "Название задачи",
+  date: "28.05.24",
+  status: "Без статуса",
 }
+setCards([...cards, newTask])
+  }
 
   return (
     <>
@@ -22,8 +36,8 @@ function addCardList (newCardList) {
         <PopExit />
         <PopNewCard />
         <PopBrowse />
-        <Header addCardList={addCardList}/>
-        <Main cardList={cardList} />
+        <Header addCard={addCard}/>
+        {isLoading ? <h1>Данные загружаются...</h1> : <Main cardList={cards} />}
       </div>
 
       <script src="js/script.js"></script>
