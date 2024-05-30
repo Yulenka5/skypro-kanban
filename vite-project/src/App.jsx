@@ -1,11 +1,12 @@
-import "./App.css";
+import { Wrapper } from "./Global.Styles";
 import Main from "./components/Main/Main";
 import Header from "./components/Header/Header";
 import PopBrowse from "./components/PopBrowse/PopBrowse";
 import PopNewCard from "./components/PopNewCard/PopNewCard";
-import PopExit from "./components/PopExit/PopExit";
+import PopExit from "./components/PopExit/PopExit.jsx"
 import { useEffect, useState } from "react";
 import { cardList } from "./data/data";
+import { GlobalStyle } from "./Global.Styles";
 
 
 function App() {
@@ -31,17 +32,14 @@ setCards([...cards, newTask])
   }
 
   return (
-    <>
-      <div className="wrapper">
+      <Wrapper>
+        <GlobalStyle/>
         <PopExit />
         <PopNewCard />
         <PopBrowse />
         <Header addCard={addCard}/>
         {isLoading ? <h1>Данные загружаются...</h1> : <Main cardList={cards} />}
-      </div>
-
-      <script src="js/script.js"></script>
-    </>
+      </Wrapper>
   );
 }
 
