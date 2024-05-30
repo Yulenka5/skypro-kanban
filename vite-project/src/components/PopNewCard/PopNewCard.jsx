@@ -1,3 +1,4 @@
+import './PopNewCard.Styles.css'
 import Calendar from "../Calendar/Calendar";
 
 function PopNewCard() {

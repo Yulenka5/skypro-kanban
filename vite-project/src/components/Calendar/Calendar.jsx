@@ -1,3 +1,5 @@
+import "./Calendar.Styles.css";
+
 function Calendar() {
   return (
     <div className="pop-new-card__calendar calendar">
@@ -76,13 +78,12 @@ function Calendar() {
             <div className="calendar__cell _other-month _weekend">1</div>
           </div>
         </div>
-
         <input type="hidden" id="datepick_value" value="08.09.2023" />
-        <div className="calendar__period">
-          <p className="calendar__p date-end">
-            Выберите срок исполнения <span className="date-control"></span>.
-          </p>
-        </div>
+      <div className="calendar__period">
+        <p className="calendar__p date-end">
+          Выберите срок исполнения <span className="date-control"></span>.
+        </p>
+      </div>
       </div>
     </div>
   );
