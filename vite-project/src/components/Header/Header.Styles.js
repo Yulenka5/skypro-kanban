@@ -26,8 +26,10 @@ export const HeaderBlock = styled.div`
 `;
 
 export const HeaderLogo = styled.div`
- width: 85px;
- `;
+  img {
+    width: 85px;
+  }
+`;
 
 export const HeaderNav = styled.nav`
   max-width: 290px;
@@ -52,10 +54,10 @@ export const HeaderBtnMainNew = styled.button`
   &:hover {
     background-color: #33399b;
   }
-`;
 
-export const HeaderBtnMainNewA = styled.a`
-  color: #ffffff;
+  a {
+    color: #ffffff;
+  }
 `;
 
 export const HeaderUser = styled.a`
@@ -84,16 +86,3 @@ export const HeaderUser = styled.a`
     padding: 0;
   }
 `;
-
-// .header__user::after {
-//   content: "";
-//   display: block;
-//   width: 6px;
-//   height: 6px;
-//   border-radius: 1px;
-//   border-left: 1.9px solid #565eef;
-//   border-bottom: 1.9px solid #565eef;
-//   transform: rotate(-45deg);
-//   margin: -6px 0 0 5px;
-//   padding: 0;
-// }

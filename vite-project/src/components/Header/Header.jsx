@@ -16,14 +16,14 @@ function Header({ addCard }) {
               <img src="/public/logo.png" alt="logo" />
             </a>
           </S.HeaderLogo>
-          <S.HeaderLogo>
+          {/* <S.HeaderLogo>
             <a href="" target="_self">
               <img src="/public/logo_dark.png" alt="logo" />
             </a>
-          </S.HeaderLogo>
+          </S.HeaderLogo> */}
           <S.HeaderNav>
             <S.HeaderBtnMainNew onClick={addCard}>
-              <S.HeaderBtnMainNewA>Создать новую задачу</S.HeaderBtnMainNewA>
+              Создать новую задачу
             </S.HeaderBtnMainNew>
             <S.HeaderUser onClick={toggleDropdown}>Ivan Ivanov</S.HeaderUser>
             {isOpen && <PopUser />}

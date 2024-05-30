@@ -77,7 +77,7 @@ export const PopExitYes = styled.button`
     background-color: #33399b;
   }
 
-  &:a {
+  a {
     width: 100%;
     height: 100%;
     color: #ffffff;
@@ -108,7 +108,7 @@ export const PopExitNo = styled.button`
     color: #ffffff;
   }
 
-  &:a {
+  a {
     width: 100%;
     height: 100%;
     color: #565eef;

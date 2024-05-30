@@ -18,7 +18,7 @@ export const CardsCard = styled.div`
   align-items: flex-start;
   justify-content: stretch;
   padding: 15px 13px 19px;
-  padding: 2em;
+  /* padding: 2em; */
 `;
 
 export const CardGroup = styled.div`
@@ -78,8 +78,18 @@ export const CardDate = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-`;
 
-// .card__date svg {
-//   width: 13px;
-// }
+  svg {
+    width: 13px;
+  }
+
+  p {
+    
+font-size: 10px;
+font-weight: 400;
+line-height: 11.72px;
+letter-spacing: 0.01em;
+text-align: left;
+
+  }
+`;
