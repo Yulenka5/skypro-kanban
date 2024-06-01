@@ -13,12 +13,12 @@ function Header({ addCard }) {
         <S.HeaderBlock>
           <S.HeaderLogo>
             <a href="" target="_self">
-              <img src="/public/logo.png" alt="logo" />
+              <img src="/logo.png" alt="logo" />
             </a>
           </S.HeaderLogo>
           {/* <S.HeaderLogo>
             <a href="" target="_self">
-              <img src="/public/logo_dark.png" alt="logo" />
+              <img src="/logo_dark.png" alt="logo" />
             </a>
           </S.HeaderLogo> */}
           <S.HeaderNav>
