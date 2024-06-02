@@ -19,6 +19,18 @@ export const CardsCard = styled.div`
   justify-content: stretch;
   padding: 15px 13px 19px;
   /* padding: 2em; */
+
+  @media (max-width: 1200px) {
+    width: 220px;
+    height: 130px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: stretch;
+    padding: 15px 13px 19px;
+  }
 `;
 
 export const CardGroup = styled.div`
@@ -56,6 +68,13 @@ export const CardBtn = styled.div`
   padding: 2px;
   cursor: pointer;
   outline: none;
+
+  div {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #94a6be;
+  }
 `;
 
 export const CardContent = styled.div`
@@ -84,12 +103,16 @@ export const CardDate = styled.div`
   }
 
   p {
-    
-font-size: 10px;
-font-weight: 400;
-line-height: 11.72px;
-letter-spacing: 0.01em;
-text-align: left;
+    /* font-size: 10px;
+    font-weight: 400;
+    line-height: 11.72px;
+    letter-spacing: 0.01em;
+    text-align: left; */
 
+    margin-left: 6px;
+    font-size: 10px;
+    line-height: 13px;
+    color: #94a6be;
+    letter-spacing: 0.2px;
   }
 `;
