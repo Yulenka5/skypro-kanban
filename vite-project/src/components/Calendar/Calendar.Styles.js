@@ -3,15 +3,6 @@ import styled from "styled-components";
 export const Calendar = styled.div`
   width: 182px;
   margin-bottom: 20px;
-  display: none;
-  width: 100%;
-  min-width: 375px;
-  height: 100%;
-  min-height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 6;
 
   @media (max-width: 660px) {
     max-width: 340px;
@@ -184,14 +175,14 @@ export const CalendarCellDCur = styled.div`
   }
 `;
 
-export const CalendarInput = styled.input`
-  div {
+export const CalendarInput = styled.input``
+
+export const CalendarPeriod = styled.div`
     padding: 0 7px;
 
     @media (max-width: 660px) {
       padding: 0;
     }
-  }
 
   p {
     color: #94a6be;
