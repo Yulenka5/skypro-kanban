@@ -1,47 +1,28 @@
-import { Wrapper } from "./Global.Styles";
-import Main from "./components/Main/Main";
-import Header from "./components/Header/Header";
-import PopBrowse from "./components/PopBrowse/PopBrowse";
-import PopNewCard from "./components/PopNewCard/PopNewCard";
-import PopExit from "./components/PopExit/PopExit.jsx";
-import { useEffect, useState } from "react";
-import { cardList } from "./data/data";
-import { GlobalStyle } from "./Global.Styles";
-import { Loader } from "./components/Loader/Loader.jsx";
-
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/Home/HomePage.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
+import Registr from "./pages/Rigastration/registr.jsx";
+import Login from "./pages/Login/login.jsx";
+import PopExit from "./pages/PopExit/PopExit.jsx";
+import "react-day-picker/dist/style.css";
+import PopBrowse from "./pages/PopBrowse/PopBrowse.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [cards, setCards] = useState(cardList);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-
-  function addCard() {
-    const newTask = {
-      id: cards.length + 1,
-      topic: "Web Design",
-      title: "Название задачи",
-      date: "28.05.24",
-      status: "Без статуса",
-    };
-    setCards([...cards, newTask]);
-  }
+  const isAuth = true;
 
   return (
-    <>
-      <GlobalStyle />
-      <Wrapper>
-        <PopExit />
-        <PopNewCard />
-        <PopBrowse />
-        <Header addCard={addCard} />
-        {isLoading ? <Loader/> : <Main cardList={cards} />}
-      </Wrapper>
-    </>
+    <Routes>
+      <Route element={<PrivateRoute isAuth={isAuth} />}>
+        <Route path="/" element={<HomePage />}>
+          <Route path="/exit" element={<PopExit />} />
+          <Route path="/card/:id" element={<PopBrowse />} />
+        </Route>
+      </Route>
+      <Route path="/register" element={<Registr />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 

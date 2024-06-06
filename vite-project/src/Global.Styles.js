@@ -29,7 +29,6 @@ ul li {
 }
 
 
-
 html,
 body {
   width: 100%;

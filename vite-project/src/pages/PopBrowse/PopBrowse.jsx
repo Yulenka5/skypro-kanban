@@ -1,7 +1,10 @@
-import Calendar from '../Calendar/Calendar';
-import './PopBrowse.Styles.css'
+import { useParams } from "react-router-dom";
+import Calendar from "../../components/Calendar/Calendar";
+import "./PopBrowse.Styles.css";
 
 function PopBrowse() {
+  const { id } = useParams();
+  console.log(id);
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
