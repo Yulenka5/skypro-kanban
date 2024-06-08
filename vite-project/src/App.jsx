@@ -7,15 +7,16 @@ import PopExit from "./pages/PopExit/PopExit.jsx";
 import "react-day-picker/dist/style.css";
 import PopBrowse from "./pages/PopBrowse/PopBrowse.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
+import { useState } from "react";
 
 function App() {
-  const isAuth = true;
+  const [isAuth, setAuth] = useState(true);
 
   return (
     <Routes>
       <Route element={<PrivateRoute isAuth={isAuth} />}>
         <Route path="/" element={<HomePage />}>
-          <Route path="/exit" element={<PopExit />} />
+          <Route path="/exit" element={<PopExit setAuth={setAuth}/>} />
           <Route path="/card/:id" element={<PopBrowse />} />
         </Route>
       </Route>
