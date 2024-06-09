@@ -1,13 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import * as S from "./PopExit.js";
 
-function PopExit({setAuth}) {
+function PopExit({ setAuth }) {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  function handleSubmit () {
-    setAuth(false)
-    navigate ("/login")
+  function handleSubmit() {
+    setAuth(false);
+    navigate("/login");
   }
   return (
     <S.PopExit>
@@ -18,9 +17,7 @@ function PopExit({setAuth}) {
           </S.PopExitTtl>
           <S.PopExitForm>
             <S.PopExitFormGroup>
-              <S.PopExitYes>
-                <a onClick={handleSubmit}>Да, выйти</a>{" "}
-              </S.PopExitYes>
+              <S.PopExitYes onClick={handleSubmit}>Да, выйти</S.PopExitYes>
               <S.PopExitNo>
                 <Link to="/">Нет, остаться</Link>{" "}
               </S.PopExitNo>

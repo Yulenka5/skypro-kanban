@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./registr.styles";
-function Registr() {
+
+function Registr({setAuth}) {
+
+  const navigate = useNavigate();
+
+  function Submit() {
+    setAuth(false);
+    navigate("/");
+  }
+
   return (
     <S.Wrapper>
       <S.ContainerSignup>
@@ -17,8 +26,8 @@ function Registr() {
                 name="password"
                 placeholder="Пароль"
               />
-              <S.ModalBtn>
-                <Link to="/">Зарегистрироваться</Link>{" "}
+              <S.ModalBtn onClick={Submit}>
+                Зарегистрироваться
               </S.ModalBtn>
               <S.ModalFormGroup>
                 <p>

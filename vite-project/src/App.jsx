@@ -16,12 +16,12 @@ function App() {
     <Routes>
       <Route element={<PrivateRoute isAuth={isAuth} />}>
         <Route path="/" element={<HomePage />}>
-          <Route path="/exit" element={<PopExit setAuth={setAuth}/>} />
+          <Route path="/exit" element={<PopExit setAuth={setAuth} />} />
           <Route path="/card/:id" element={<PopBrowse />} />
         </Route>
       </Route>
-      <Route path="/register" element={<Registr />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Registr setAuth={setAuth}/>} />
+      <Route path="/login" element={<Login setAuth={setAuth} />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
