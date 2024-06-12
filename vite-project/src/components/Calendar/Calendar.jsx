@@ -1,4 +1,4 @@
-import * as S from "./Calendar.Styles";
+ import * as S from "./Calendar.Styles";
 
 function Calendar() {
   return (
@@ -78,12 +78,16 @@ function Calendar() {
             <S.CalendarCellM>1</S.CalendarCellM>
           </S.CalendarCells>
         </S.CalendarContent>
-        <S.CalendarInput type="hidden" id="datepick_value" value="08.09.2023" />
-        <div>
+        <S.CalendarInput type="hidden" value="08.09.2023" />
+        <S.CalendarPeriod >
           <p>
             Выберите срок исполнения <span></span>.
           </p>
-        </div>
+          {/*<p>*/}
+          {/*  Срок исполнения:{" "}*/}
+          {/*  <span>09.09.23</span>*/}
+          {/*</p>*/}
+        </S.CalendarPeriod>
       </S.Calendarblock>
     </S.Calendar>
   );
