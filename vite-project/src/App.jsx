@@ -9,8 +9,11 @@ import PopBrowse from "./pages/PopBrowse/PopBrowse.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import { useState } from "react";
 
+
+
 function App() {
   const [isAuth, setAuth] = useState(true);
+
 
   return (
     <Routes>

@@ -1,20 +1,21 @@
-import { Wrapper, GlobalStyle  } from "../../Global.Styles.js";
+import { Wrapper, GlobalStyle } from "../../Global.Styles.js";
 import Main from "../../components/Main/Main.jsx";
 import Header from "../../components/Header/Header.jsx";
 import { useEffect, useState } from "react";
-import { cardList } from "../../data/data.js";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { Outlet } from "react-router-dom";
-
+import { getTasks } from "../../api.js";
 
 function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
-  const [cards, setCards] = useState(cardList);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    getTasks().then((tasks) => {
+      setCards(tasks);
+    }).finally(()=>{
+      setIsLoading(false)
+    })
   }, []);
 
   function addCard() {
@@ -34,7 +35,7 @@ function HomePage() {
       <Wrapper>
         <Outlet />
         <Header addCard={addCard} />
-        {isLoading ? <Loader/> : <Main cardList={cards} />}
+        {isLoading ? <Loader /> : <Main cardList={cards} />}
       </Wrapper>
     </>
   );

@@ -5,8 +5,8 @@ function Registr({setAuth}) {
 
   const navigate = useNavigate();
 
-  function Submit() {
-    setAuth(false);
+  function submit() {
+    setAuth(true);
     navigate("/");
   }
 
@@ -26,7 +26,7 @@ function Registr({setAuth}) {
                 name="password"
                 placeholder="Пароль"
               />
-              <S.ModalBtn onClick={Submit}>
+              <S.ModalBtn onClick={submit}>
                 Зарегистрироваться
               </S.ModalBtn>
               <S.ModalFormGroup>

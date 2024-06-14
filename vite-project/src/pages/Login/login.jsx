@@ -4,8 +4,8 @@ import * as S from "./login.Styles";
 function Login({ setAuth }) {
   const navigate = useNavigate();
 
-  function Submit() {
-    setAuth(false);
+  function submit() {
+    setAuth(true);
     navigate("/");
   }
 
@@ -24,7 +24,7 @@ function Login({ setAuth }) {
                 name="password"
                 placeholder="Пароль"
               />
-              <S.ModalBtnEnter onClick={Submit}>Войти</S.ModalBtnEnter>
+              <S.ModalBtnEnter onClick={submit}>Войти</S.ModalBtnEnter>
               <S.ModalFormGroup>
                 <p>Нужно зарегистрироваться?</p>
                 <Link to="/register">Регистрируйтесь здесь</Link>
