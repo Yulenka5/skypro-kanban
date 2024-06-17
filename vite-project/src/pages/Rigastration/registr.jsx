@@ -1,12 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
 import * as S from "./registr.styles";
+import { signUp } from "../../api";
+import { useState } from "react";
 
-function Registr({setAuth}) {
+function Registr() {
+  const [formData, setFormData] = useState({login: '', name: '', password: ''})
 
   const navigate = useNavigate();
 
-  function submit() {
-    setAuth(true);
+  function onChange(event) {
+    const {name, value} = event.target
+    setFormData({...formData, [name]:value})
+    }
+
+  function submit(event) {
+    event.preventDefault()
+    if (!formData.login.trim() || !formData.password.trim() || !formData.name.trim() ) {
+      alert('//')
+      return 
+    }
+
+    signUp(formData)
+    // setAuth(true);
     navigate("/");
   }
 
@@ -19,12 +34,13 @@ function Registr({setAuth}) {
               <h2>Регистрация</h2>
             </S.ModalTtl>
             <S.ModalFormLogin>
-              <S.ModalInput type="text" name="first-name" placeholder="Имя" />
-              <S.ModalInput type="text" name="login" placeholder="Эл. почта" />
+              <S.ModalInput type="text" name="name" placeholder="Имя" value={formData.name} onChange={onChange}/>
+              <S.ModalInput type="text" name="login" placeholder="Эл. почта" value={formData.login} onChange={onChange}/>
               <S.ModalInput
                 type="password"
                 name="password"
                 placeholder="Пароль"
+                value={formData.password} onChange={onChange}
               />
               <S.ModalBtn onClick={submit}>
                 Зарегистрироваться

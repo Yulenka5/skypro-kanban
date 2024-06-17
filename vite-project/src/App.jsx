@@ -12,19 +12,20 @@ import { useState } from "react";
 
 
 function App() {
-  const [isAuth, setAuth] = useState(true);
+  // const [isAuth, setAuth] = useState(true);
+  const [userData, setUserData] = useState(null);
 
 
   return (
     <Routes>
-      <Route element={<PrivateRoute isAuth={isAuth} />}>
+      <Route element={<PrivateRoute isAuth={userData} />}>
         <Route path="/" element={<HomePage />}>
-          <Route path="/exit" element={<PopExit setAuth={setAuth} />} />
+          <Route path="/exit" element={<PopExit setAuth={setUserData} />} />
           <Route path="/card/:id" element={<PopBrowse />} />
         </Route>
       </Route>
-      <Route path="/register" element={<Registr setAuth={setAuth}/>} />
-      <Route path="/login" element={<Login setAuth={setAuth} />} />
+      <Route path="/register" element={<Registr setAuth={setUserData}/>} />
+      <Route path="/login" element={<Login setAuth={setUserData} />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

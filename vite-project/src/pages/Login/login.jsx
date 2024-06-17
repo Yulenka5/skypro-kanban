@@ -1,13 +1,31 @@
 import { Link, useNavigate } from "react-router-dom";
 import * as S from "./login.Styles";
+import { useState } from "react";
+import { signIn } from "../../api";
 
-function Login({ setAuth }) {
+function Login() {
+  const [formData, setFormData] = useState({ login: "", password: "" });
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  function submit() {
-    setAuth(true);
-    navigate("/");
+  function onChange(event) {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   }
+
+  function submit(event) {
+    event.preventDefault();
+    signIn(formData).then((data) => {
+      if (!formData.login.trim() || !formData.password.trim()) {
+        return setError(data);
+      }
+
+      setError(null);
+      navigate("/");
+    });
+  }
+
+  
 
   return (
     <S.Wrapper>
@@ -18,12 +36,21 @@ function Login({ setAuth }) {
               <h2>Вход</h2>
             </S.ModalTtl>
             <S.ModalFormLogin>
-              <S.ModalInput type="text" name="login" placeholder="Эл. почта" />
+              <S.ModalInput
+                type="text"
+                name="login"
+                placeholder="Эл. почта"
+                value={formData.login}
+                onChange={onChange}
+              />
               <S.ModalInput
                 type="password"
                 name="password"
                 placeholder="Пароль"
+                value={formData.password}
+                onChange={onChange}
               />
+              {error && <p>{error}</p>}
               <S.ModalBtnEnter onClick={submit}>Войти</S.ModalBtnEnter>
               <S.ModalFormGroup>
                 <p>Нужно зарегистрироваться?</p>

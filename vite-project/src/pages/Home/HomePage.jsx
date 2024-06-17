@@ -9,13 +9,20 @@ import { getTasks } from "../../api.js";
 function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [cards, setCards] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getTasks().then((tasks) => {
-      setCards(tasks);
-    }).finally(()=>{
-      setIsLoading(false)
-    })
+    setIsLoading(true)
+    getTasks()
+      .then((tasks) => {
+        setCards(tasks);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   function addCard() {
@@ -35,7 +42,7 @@ function HomePage() {
       <Wrapper>
         <Outlet />
         <Header addCard={addCard} />
-        {isLoading ? <Loader /> : <Main cardList={cards} />}
+        {error ? <div>{error}</div> : isLoading ? <Loader /> : <Main cardList={cards} />}
       </Wrapper>
     </>
   );
