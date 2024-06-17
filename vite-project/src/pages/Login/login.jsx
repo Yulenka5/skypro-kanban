@@ -3,7 +3,7 @@ import * as S from "./login.Styles";
 import { useState } from "react";
 import { signIn } from "../../api";
 
-function Login() {
+function Login({setAuth}) {
   const [formData, setFormData] = useState({ login: "", password: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -21,10 +21,10 @@ function Login() {
       }
 
       setError(null);
+      setAuth(true)
       navigate("/");
     });
   }
-
   
 
   return (

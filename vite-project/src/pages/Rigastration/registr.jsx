@@ -3,8 +3,9 @@ import * as S from "./registr.styles";
 import { signUp } from "../../api";
 import { useState } from "react";
 
-function Registr() {
+function Registr({setAuth}) {
   const [formData, setFormData] = useState({login: '', name: '', password: ''})
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -15,14 +16,15 @@ function Registr() {
 
   function submit(event) {
     event.preventDefault()
-    if (!formData.login.trim() || !formData.password.trim() || !formData.name.trim() ) {
-      alert('//')
-      return 
-    }
+    signUp(formData).then((data) => {
+      if (!formData.login.trim() || !formData.password.trim() || !formData.name.trim()) {
+        return setError(data);
+      }
 
-    signUp(formData)
-    // setAuth(true);
-    navigate("/");
+      setError(null);
+      setAuth(true)
+      navigate("/");
+    });
   }
 
   return (
@@ -42,6 +44,7 @@ function Registr() {
                 placeholder="Пароль"
                 value={formData.password} onChange={onChange}
               />
+              {error && <p>{error}</p>}
               <S.ModalBtn onClick={submit}>
                 Зарегистрироваться
               </S.ModalBtn>
