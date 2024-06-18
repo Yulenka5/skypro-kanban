@@ -3,28 +3,40 @@ import * as S from "./registr.styles";
 import { signUp } from "../../api";
 import { useState } from "react";
 
-function Registr({setAuth}) {
-  const [formData, setFormData] = useState({login: '', name: '', password: ''})
+function Registr({ setAuth }) {
+  const [formData, setFormData] = useState({
+    login: "",
+    name: "",
+    password: "",
+  });
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
   function onChange(event) {
-    const {name, value} = event.target
-    setFormData({...formData, [name]:value})
-    }
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  }
 
   function submit(event) {
-    event.preventDefault()
-    signUp(formData).then((data) => {
-      if (!formData.login.trim() || !formData.password.trim() || !formData.name.trim()) {
-        return setError(data);
-      }
+    event.preventDefault();
+    if (
+      !formData.login.trim() ||
+      !formData.password.trim() ||
+      !formData.name.trim()
+    ) {
+      return setError(error);
+    }
 
-      setError(null);
-      setAuth(true)
-      navigate("/");
-    });
+    signUp(formData)
+      .then(() => {
+        setError(null);
+        setAuth(true);
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   }
 
   return (
@@ -36,18 +48,29 @@ function Registr({setAuth}) {
               <h2>Регистрация</h2>
             </S.ModalTtl>
             <S.ModalFormLogin>
-              <S.ModalInput type="text" name="name" placeholder="Имя" value={formData.name} onChange={onChange}/>
-              <S.ModalInput type="text" name="login" placeholder="Эл. почта" value={formData.login} onChange={onChange}/>
+              <S.ModalInput
+                type="text"
+                name="name"
+                placeholder="Имя"
+                value={formData.name}
+                onChange={onChange}
+              />
+              <S.ModalInput
+                type="text"
+                name="login"
+                placeholder="Эл. почта"
+                value={formData.login}
+                onChange={onChange}
+              />
               <S.ModalInput
                 type="password"
                 name="password"
                 placeholder="Пароль"
-                value={formData.password} onChange={onChange}
+                value={formData.password}
+                onChange={onChange}
               />
               {error && <p>{error}</p>}
-              <S.ModalBtn onClick={submit}>
-                Зарегистрироваться
-              </S.ModalBtn>
+              <S.ModalBtn onClick={submit}>Зарегистрироваться</S.ModalBtn>
               <S.ModalFormGroup>
                 <p>
                   Уже есть аккаунт? <Link to="/login">Войдите здесь</Link>

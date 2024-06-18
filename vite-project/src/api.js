@@ -28,12 +28,15 @@ export async function signIn({login, password}) {
       }),
     });
     if (!response.ok) {
-      throw new Error("произошла проблема с авторизацией");
+      throw new Error("произошла ошибка авторизации");
     }
     const data = await response.json();
     return data.user;
   } catch (error) {
-    throw new Error(error.message);
+    if(error.message === "Failed to fetch")
+      return  ("Запрос на сервер не выполнен, проверьте подключение к сети интернет")
+    else 
+    return (error.message);
   }
 }
 
@@ -53,6 +56,9 @@ export async function signUp({login, name, password}) {
     const data = await response.json();
     return data.user;
   } catch (error) {
-    throw new Error(error.message);
+    if(error.message === "Failed to fetch")
+      return  ("Запрос на сервер не выполнен, проверьте подключение к сети интернет")
+    else 
+    return (error.message);
   }
 }

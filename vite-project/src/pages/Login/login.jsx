@@ -3,7 +3,7 @@ import * as S from "./login.Styles";
 import { useState } from "react";
 import { signIn } from "../../api";
 
-function Login({setAuth}) {
+function Login({ setAuth }) {
   const [formData, setFormData] = useState({ login: "", password: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -15,17 +15,19 @@ function Login({setAuth}) {
 
   function submit(event) {
     event.preventDefault();
-    signIn(formData).then((data) => {
-      if (!formData.login.trim() || !formData.password.trim()) {
-        return setError(data);
-      }
-
-      setError(null);
-      setAuth(true)
-      navigate("/");
-    });
+    if (!formData.login.trim() || !formData.password.trim()) {
+      return setError(error);
+    }
+    signIn(formData)
+      .then(() => {
+        setError(null);
+        setAuth(true);
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   }
-  
 
   return (
     <S.Wrapper>
