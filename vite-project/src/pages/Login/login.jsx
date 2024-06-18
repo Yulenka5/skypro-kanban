@@ -11,12 +11,17 @@ function Login({ setAuth }) {
   function onChange(event) {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+
+    if (error) {
+      setError(null)
+    }
   }
 
   function submit(event) {
     event.preventDefault();
+    
     if (!formData.login.trim() || !formData.password.trim()) {
-      return setError(error);
+      return setError("введите учетные данные");
     }
     signIn(formData)
       .then(() => {

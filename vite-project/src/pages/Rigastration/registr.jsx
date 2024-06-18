@@ -16,6 +16,10 @@ function Registr({ setAuth }) {
   function onChange(event) {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+
+    if (error) {
+      setError(null)
+    }
   }
 
   function submit(event) {
@@ -25,7 +29,7 @@ function Registr({ setAuth }) {
       !formData.password.trim() ||
       !formData.name.trim()
     ) {
-      return setError(error);
+      return setError("введите данные");
     }
 
     signUp(formData)
