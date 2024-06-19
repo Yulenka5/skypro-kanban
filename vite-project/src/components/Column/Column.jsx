@@ -9,9 +9,9 @@ function Column({ title, cardList }) {
           <S.ColumnText>{title}</S.ColumnText>
         </S.ColumnTitle>
         <S.Cards>
-          {cardList.map(({ id, topic, title, date }) => {
+          {cardList.map(({ _id, topic, title, date }) => {
             return (
-              <Card key={id} id={id} topic={topic} title={title} date={date} />
+              <Card key={_id} id={_id} topic={topic} title={title} date={date} />
             );
           })}
         </S.Cards>
