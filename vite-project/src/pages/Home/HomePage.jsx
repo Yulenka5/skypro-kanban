@@ -16,9 +16,9 @@ function HomePage() {
 
   useEffect(() => {
     setIsLoading(true)
-    getTasks(user.token)
+    getTasks(user.user.token)
       .then((res) => {
-        setCards(res.tasks);
+        setCards(res);
       })
       .catch((error) => {
         setError(error.message);

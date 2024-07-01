@@ -1,6 +1,6 @@
 
 
-export async function getTasks({token}) {
+export async function getTasks(token) {
   try {
     const response = await fetch("https://wedev-api.sky.pro/api/kanban", {
       method: "GET",
