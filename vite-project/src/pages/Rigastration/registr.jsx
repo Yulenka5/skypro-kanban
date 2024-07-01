@@ -1,24 +1,24 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as S from "./registr.styles";
 import { signUp } from "../../api";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../context/userContext";
 
-function Registr({ setAuth }) {
+function Registr() {
   const [formData, setFormData] = useState({
     login: "",
     name: "",
     password: "",
   });
   const [error, setError] = useState(null);
-
-  const navigate = useNavigate();
+  const { loginUser } = useContext(UserContext);
 
   function onChange(event) {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
 
     if (error) {
-      setError(null)
+      setError(null);
     }
   }
 
@@ -33,10 +33,9 @@ function Registr({ setAuth }) {
     }
 
     signUp(formData)
-      .then(() => {
+      .then((res) => {
         setError(null);
-        setAuth(true);
-        navigate("/");
+        loginUser(res);
       })
       .catch((error) => {
         setError(error.message);

@@ -3,7 +3,8 @@ import PopUser from "../PopUser/PopUser";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Header({ addCard }) {
+
+function Header({ user }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -23,10 +24,12 @@ function Header({ addCard }) {
             </a>
           </S.HeaderLogo> */}
           <S.HeaderNav>
-            <S.HeaderBtnMainNew onClick={addCard}>
-            <a href="#popNewCard">Создать новую задачу</a>
-            </S.HeaderBtnMainNew>
-            <S.HeaderUser onClick={toggleDropdown}>Ivan Ivanov</S.HeaderUser>
+            <Link to={"/new-card"}>
+              <S.HeaderBtnMainNew>
+                <a href="#popNewCard">Создать новую задачу</a>
+              </S.HeaderBtnMainNew>
+            </Link>
+            <S.HeaderUser onClick={toggleDropdown}>{user.name}</S.HeaderUser>
             {isOpen && <PopUser />}
           </S.HeaderNav>
         </S.HeaderBlock>

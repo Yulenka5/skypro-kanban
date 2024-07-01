@@ -7,25 +7,22 @@ import PopExit from "./pages/PopExit/PopExit.jsx";
 import "react-day-picker/dist/style.css";
 import PopBrowse from "./pages/PopBrowse/PopBrowse.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
-import { useState } from "react";
-
+import PopNewCard from "./pages/PopNewCard/PopNewCard.jsx";
 
 
 function App() {
-  const [isAuth, setAuth] = useState(true);
-  // const [userData, setUserData] = useState(null);
-
-
+ 
   return (
     <Routes>
-      <Route element={<PrivateRoute isAuth={isAuth} />}>
+      <Route element={<PrivateRoute />}>
         <Route path="/" element={<HomePage />}>
-          <Route path="/exit" element={<PopExit setAuth={setAuth} />} />
+          <Route path="/exit" element={<PopExit />} />
           <Route path="/card/:id" element={<PopBrowse />} />
+          <Route path="/newcard" element={<PopNewCard/>} />
         </Route>
       </Route>
-      <Route path="/register" element={<Registr setAuth={setAuth}/>} />
-      <Route path="/login" element={<Login setAuth={setAuth} />} />
+      <Route path="/register" element={<Registr />} />
+      <Route path="/login" element={<Login />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

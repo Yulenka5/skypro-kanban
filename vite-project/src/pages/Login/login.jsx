@@ -1,12 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as S from "./login.Styles";
 import { useState } from "react";
 import { signIn } from "../../api";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 
-function Login({ setAuth }) {
+
+function Login() {
   const [formData, setFormData] = useState({ login: "", password: "" });
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const {loginUser} = useContext(UserContext)
 
   function onChange(event) {
     const { name, value } = event.target;
@@ -24,10 +27,9 @@ function Login({ setAuth }) {
       return setError("введите учетные данные");
     }
     signIn(formData)
-      .then(() => {
+      .then((res) => {
         setError(null);
-        setAuth(true);
-        navigate("/");
+      loginUser(res)
       })
       .catch((error) => {
         setError(error.message);

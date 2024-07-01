@@ -1,16 +1,63 @@
-import './PopNewCard.Styles.css'
+import "./PopNewCard.Styles.css";
 import Calendar from "../../components/Calendar/Calendar";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/userContext";
+import { addNewCard } from "../../api";
+import { CardsContext } from "../../context/cardsContext";
 
 function PopNewCard() {
+  const [error, setError] = useState("");
+  const { user } = useContext(UserContext);
+  const { setCards } = useContext(CardsContext);
+  const navigate = useNavigate();
+
+  const [inputValue, setInputValue] = useState({
+    date: new Date(),
+    topic: "",
+    title: "",
+    description: "",
+    status: "Без статуса",
+  });
+
+  const onChangeInput = (e) => {
+    const { value, name } = e.target;
+    setInputValue({ ...inputValue, [name]: value });
+  };
+
+  const onAddNewCard = () => {
+    setError("");
+    if (!inputValue.description) {
+      return setError("Введите описание задачи");
+    }
+    const title = inputValue.title || "Новая задача";
+    const topic = inputValue.topic || "Research";
+
+    const newTask = {
+      ...inputValue,
+      topic,
+      title,
+    };
+
+    addNewCard({ token: user.token, newTask })
+      .then((res) => {
+        setCards(res.tasks);
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
   return (
     <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
         <div className="pop-new-card__block">
           <div className="pop-new-card__content">
             <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <a href="#" className="pop-new-card__close">
+            <Link to={"/"} className="pop-new-card__close">
               &#10006;
-            </a>
+            </Link>
             <div className="pop-new-card__wrap">
               <form
                 className="pop-new-card__form form-new"
@@ -22,9 +69,10 @@ function PopNewCard() {
                     Название задачи
                   </label>
                   <input
+                    onChange={onChangeInput}
                     className="form-new__input"
                     type="text"
-                    name="name"
+                    name="title"
                     id="formTitle"
                     placeholder="Введите название задачи..."
                     autoFocus
@@ -35,8 +83,9 @@ function PopNewCard() {
                     Описание задачи
                   </label>
                   <textarea
+                    onChange={onChangeInput}
                     className="form-new__area"
-                    name="text"
+                    name="description"
                     id="textArea"
                     placeholder="Введите описание задачи..."
                   ></textarea>
@@ -58,7 +107,12 @@ function PopNewCard() {
                 </div>
               </div>
             </div>
-            <button className="form-new__create _hover01" id="btnCreate">
+            {error && error}
+            <button
+              onClick={onAddNewCard}
+              className="form-new__create _hover01"
+              id="btnCreate"
+            >
               Создать задачу
             </button>
           </div>

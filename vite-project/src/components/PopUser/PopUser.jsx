@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import * as S from "./PopUser.Styles.js";
 
-function PopUser() {
+function PopUser( user ) {
   return (
     <S.HeaderPopUserSet>
       <a href="">x</a>
-      <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
-      <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+      <S.PopUserSetName>{user.name}</S.PopUserSetName>
+      <S.PopUserSetMail>{user.login}</S.PopUserSetMail>
       <S.PopUserSetTheme>
         <p>Темная тема</p>
         <input type="checkbox" name="checkbox" />
