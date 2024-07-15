@@ -1,19 +1,20 @@
-import "./PopNewCard.Styles.css";
-import Calendar from "../../components/Calendar/Calendar";
+import * as S from "./PopNewCard.Styles.js";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { addNewCard } from "../../api";
 import { CardsContext } from "../../context/cardsContext";
+import {DayPicker} from "react-day-picker";
+
 
 function PopNewCard() {
+  const [date, setDate] = useState(new Date)
   const [error, setError] = useState("");
   const { user } = useContext(UserContext);
   const { setCards } = useContext(CardsContext);
   const navigate = useNavigate();
 
   const [inputValue, setInputValue] = useState({
-    date: new Date(),
     topic: "",
     title: "",
     description: "",
@@ -37,11 +38,12 @@ function PopNewCard() {
       ...inputValue,
       topic,
       title,
+      date,
     };
 
     addNewCard({ token: user.token, newTask })
       .then((res) => {
-        setCards(res.tasks);
+        setCards(res);
         navigate("/");
       })
       .catch((error) => {
@@ -50,51 +52,48 @@ function PopNewCard() {
   };
 
   return (
-    <div className="pop-new-card" id="popNewCard">
-      <div className="pop-new-card__container">
-        <div className="pop-new-card__block">
-          <div className="pop-new-card__content">
-            <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <Link to={"/"} className="pop-new-card__close">
+    <S.PopNewCard>
+      <S.PopNewCardContainer>
+        <S.PopNewCardBlock>
+          <S.PopNewCardContent>
+            <S.PopNewCardText>Создание задачи</S.PopNewCardText>
+            <Link to={"/"}>
               &#10006;
             </Link>
-            <div className="pop-new-card__wrap">
-              <form
-                className="pop-new-card__form form-new"
-                id="formNewCard"
+            <S.PopNewCardWrap>
+              <S.PopNewCardForm
                 action="#"
               >
-                <div className="form-new__block">
-                  <label htmlFor="formTitle" className="subttl">
+                <S.FormNewBlock>
+                  <S.PopNewCardLabel htmlFor="formTitle">
                     Название задачи
-                  </label>
-                  <input
+                  </S.PopNewCardLabel>
+                  <S.FormNewInput
                     onChange={onChangeInput}
-                    className="form-new__input"
                     type="text"
                     name="title"
-                    id="formTitle"
                     placeholder="Введите название задачи..."
                     autoFocus
                   />
-                </div>
-                <div className="form-new__block">
-                  <label htmlFor="textArea" className="subttl">
+                </S.FormNewBlock>
+                <S.FormNewBlock>
+                  <S.PopNewCardLabel htmlFor="textArea" >
                     Описание задачи
-                  </label>
-                  <textarea
+                  </S.PopNewCardLabel>
+                  <S.FormNewArea
                     onChange={onChangeInput}
-                    className="form-new__area"
                     name="description"
-                    id="textArea"
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
-              <Calendar />
-            </div>
-            <div className="pop-new-card__categories categories">
-              <p className="categories__p subttl">Категория</p>
+                  ></S.FormNewArea>
+                </S.FormNewBlock>
+              </S.PopNewCardForm>
+              <S.Calendar>
+                <S.CalendarTtl>Даты</S.CalendarTtl>
+                <DayPicker weekStartsOn={1} mode="single" selected={date} onSelect={setDate}/>
+                </S.Calendar>
+            </S.PopNewCardWrap>
+            <S.PopCardCategories>
+              <S.PopCardCategoriesSub>Категория</S.PopCardCategoriesSub>
               <div className="categories__themes">
                 <div className="categories__theme _orange _active-category">
                   <p className="_orange">Web Design</p>
@@ -106,19 +105,17 @@ function PopNewCard() {
                   <p className="_purple">Copywriting</p>
                 </div>
               </div>
-            </div>
+            </S.PopCardCategories>
             {error && error}
-            <button
+            <S.FormNewCreateButton
               onClick={onAddNewCard}
-              className="form-new__create _hover01"
-              id="btnCreate"
             >
               Создать задачу
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+            </S.FormNewCreateButton>
+          </S.PopNewCardContent>
+        </S.PopNewCardBlock>
+      </S.PopNewCardContainer>
+    </S.PopNewCard>
   );
 }
 

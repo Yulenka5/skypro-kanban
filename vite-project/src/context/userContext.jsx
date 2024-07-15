@@ -18,8 +18,8 @@ export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const loginUser = (res) => {
-    setUser(res.user);
-    localStorage.setItem("user", JSON.stringify(res.user));
+    setUser(res);
+    localStorage.setItem("user", JSON.stringify(res));
     navigate("/");
   };
 

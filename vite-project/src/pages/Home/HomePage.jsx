@@ -16,7 +16,7 @@ function HomePage() {
 
   useEffect(() => {
     setIsLoading(true)
-    getTasks(user.user.token)
+    getTasks(user.token)
       .then((res) => {
         setCards(res);
       })

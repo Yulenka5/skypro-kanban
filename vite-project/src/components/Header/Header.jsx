@@ -24,7 +24,7 @@ function Header({ user }) {
             </a>
           </S.HeaderLogo> */}
           <S.HeaderNav>
-            <Link to={"/new-card"}>
+            <Link to={"/newcard"}>
               <S.HeaderBtnMainNew>
                 <a href="#popNewCard">Создать новую задачу</a>
               </S.HeaderBtnMainNew>
