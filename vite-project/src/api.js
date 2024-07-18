@@ -34,9 +34,9 @@ export async function addNewCard({token, newTask}) {
     return data.tasks;
   } catch (error) {
     if(error.message === "Failed to fetch")
-      return  ("Запрос на сервер не выполнен, проверьте подключение к сети интернет")
-    else 
-    return (error.message);
+      throw new Error("Запрос на сервер не выполнен, проверьте подключение к сети интернет")
+    else
+      throw new Error(error.message);
   }
 }
 

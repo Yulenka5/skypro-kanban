@@ -23,6 +23,7 @@ export const UserProvider = ({ children }) => {
     navigate("/");
   };
 
+
   const logoutUser = () => {
     setUser(null);
     navigate("/login");

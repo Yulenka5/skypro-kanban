@@ -12,11 +12,11 @@ function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const {cards, setCards} = useContext(CardsContext);
   const [error, setError] = useState(null);
-  const user = useContext(UserContext)
+  const userContext = useContext(UserContext)
 
   useEffect(() => {
     setIsLoading(true)
-    getTasks(user.token)
+    getTasks(userContext.user.token)
       .then((res) => {
         setCards(res);
       })
@@ -34,7 +34,7 @@ function HomePage() {
       <GlobalStyle />
       <Wrapper>
         <Outlet />
-        <Header user={user} />
+        <Header />
         {error ? <div>{error}</div> : isLoading ? <Loader /> : <Main cardList={cards} />}
       </Wrapper>
     </>
