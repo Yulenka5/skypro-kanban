@@ -10,7 +10,6 @@ import { ru } from "date-fns/locale";
 
 function PopNewCard() {
   const [date, setDate] = useState(new Date)
-  const [topic, setTopic] = useState('')
   const [error, setError] = useState("");
   const { user } = useContext(UserContext);
   const { setCards } = useContext(CardsContext);
@@ -52,11 +51,13 @@ function PopNewCard() {
   };
 
   const newDateFormat = (date) => {
+    if (!date)
+      return (<>Выберите срок исполнения: ___</>)
+
     const FormatDate = date.toLocaleDateString("ru-US")
-    return <>Выберите срок исполнения {" "} {FormatDate}</>
+
+    return (<>Выбранная дата: {FormatDate}</>)
   }
-
-
 
   return (
     <S.PopNewCard>
@@ -68,9 +69,7 @@ function PopNewCard() {
               &#10006;
             </Link>
             <S.PopNewCardWrap>
-              <S.PopNewCardForm
-                action="#"
-              >
+              <S.PopNewCardForm action="#">
                 <S.FormNewBlock>
                   <S.PopNewCardLabel htmlFor="formTitle">
                     Название задачи
@@ -91,7 +90,7 @@ function PopNewCard() {
                     onChange={onChangeInput}
                     name="description"
                     placeholder="Введите описание задачи..."
-                  ></S.FormNewArea>
+                  />
                 </S.FormNewBlock>
               </S.PopNewCardForm>
               <S.Calendar>
@@ -102,24 +101,22 @@ function PopNewCard() {
             <S.PopCardCategories>
               <S.PopCardCategoriesSub>Категория</S.PopCardCategoriesSub>
               <S.CategoriesThemes>
-                <S.WrapperRadio $isActive={topic === 'Web Design'} className=" _orange ">
-                  <S.RadioLabel  htmlFor="theme1">Web Design</S.RadioLabel>
-                  <S.RadioInput onChange={(e)=>setTopic(e.target.value)} className="_orange" type={"radio"} id="theme1" name="theme" value='Web Design'/>
+                <S.WrapperRadio $isActive={inputValue.topic === "Web Design"} $themeColor={"_orange"}>
+                  <S.RadioLabel htmlFor="theme1">Web Design</S.RadioLabel>
+                  <S.RadioInput onChange={onChangeInput} type="radio" id="theme1" name="topic" value="Web Design" />
                 </S.WrapperRadio>
-                <S.WrapperRadio $isActive={topic === 'Research'} className=" _green">
-                  <S.RadioLabel  htmlFor="theme2">Research</S.RadioLabel>
-                  <S.RadioInput onChange={(e)=>setTopic(e.target.value)} className="_green" type={"radio"} id="theme2" name="theme" value='Research'/>
+                <S.WrapperRadio $isActive={inputValue.topic === "Research"} $themeColor={"_green"}>
+                  <S.RadioLabel htmlFor="theme2">Research</S.RadioLabel>
+                  <S.RadioInput onChange={onChangeInput} type="radio" id="theme2" name="topic" value="Research" />
                   </S.WrapperRadio>
-                <S.WrapperRadio $isActive={topic === 'Copywriting'} className="_purple">
-                  <S.RadioLabel  htmlFor="theme3">Copywriting</S.RadioLabel>
-                  <S.RadioInput onChange={(e)=>setTopic(e.target.value)} className="_purple" type={"radio"} id="theme3" name="theme" value='Copywriting'/>
+                <S.WrapperRadio $isActive={inputValue.topic === "Copywriting"} $themeColor={"_purple"}>
+                  <S.RadioLabel htmlFor="theme3">Copywriting</S.RadioLabel>
+                  <S.RadioInput onChange={onChangeInput} type="radio" id="theme3" name="topic" value="Copywriting" />
                 </S.WrapperRadio>
               </S.CategoriesThemes>
             </S.PopCardCategories>
             {error}
-            <S.FormNewCreateButton
-              onClick={onAddNewCard}
-            >
+            <S.FormNewCreateButton onClick={onAddNewCard}>
               Создать задачу
             </S.FormNewCreateButton>
           </S.PopNewCardContent>

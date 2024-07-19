@@ -1,3 +1,4 @@
+
 export const topicStyles = {
   _orange: {
     backgroundColor: "#FFE4C2",
@@ -21,6 +22,6 @@ export const topicStyles = {
 
 export const topicHeader = {
   "Web Design": "_orange",
-  Research: "_green",
-  Copywriting: "_purple",
+  "Research": "_green",
+  "Copywriting": "_purple",
 };

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {DayPicker} from "react-day-picker";
+import {topicStyles} from "../../lib/topic";
 
 
 export const CalendarBlock = styled(DayPicker)`
@@ -32,44 +33,46 @@ export const PopNewCard = styled.div`
 `
 
 export const PopNewCardContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
 `
 
 export const PopNewCardBlock = styled.div`
-    display: block;
-    margin: 0 auto;
-    background-color: #FFFFFF;
-    max-width: 630px;
-    width: 100%;
-    padding: 40px 30px 48px;
-    border-radius: 10px;
-    border: 0.7px solid #D4DBE5;
-    position: relative;
-  `
+  display: block;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  max-width: 630px;
+  width: 100%;
+  padding: 40px 30px 48px;
+  border-radius: 10px;
+  border: 0.7px solid #D4DBE5;
+  position: relative;
+`
 
 export const PopNewCardContent = styled.div`
-    display: block;
-    text-align: left;
-  
+  display: block;
+  text-align: left;
+
   a {
     position: absolute;
     top: 20px;
     right: 30px;
     color: #94A6BE;
     cursor: pointer;
+
     &:hover {
       color: #000000;
     }
   }
-  `
+`
+
 export const PopNewCardText = styled.h3`
   color: #000;
   font-size: 20px;
@@ -77,18 +80,20 @@ export const PopNewCardText = styled.h3`
   line-height: 24px;
   margin-bottom: 20px;
 `
+
 export const PopNewCardWrap = styled.div`
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 `
 
 export const PopNewCardForm = styled.form`
-    max-width: 370px;
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
- `
+  max-width: 370px;
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+`
+
 export const Calendar = styled.div`
   width: 182px;
   margin-bottom: 20px;
@@ -97,7 +102,7 @@ export const Calendar = styled.div`
     max-width: 340px;
     width: 100%;
   }
-`;
+`
 
 export const CalendarTtl = styled.p`
   margin-bottom: 14px;
@@ -110,17 +115,20 @@ export const CalendarTtl = styled.p`
   @media (max-width: 660px) {
     padding: 0;
   }
-`;
-export const FormNewBlock = styled.div`
-    display: flex;
-    flex-direction: column;
 `
+
+export const FormNewBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const PopNewCardLabel = styled.label`
   color: #000;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
 `
+
 export const FormNewInput = styled.input`
   width: 100%;
   outline: none;
@@ -133,8 +141,7 @@ export const FormNewInput = styled.input`
   letter-spacing: -0.14px;
   margin: 20px 0;
 
-  &::placeholder,
-  &::-moz-placeholder {
+  &::placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
@@ -142,6 +149,7 @@ export const FormNewInput = styled.input`
     letter-spacing: -0.14px;
   }
 `
+
 export const FormNewArea = styled.textarea`
   max-width: 370px;
   margin-top: 14px;
@@ -156,17 +164,18 @@ export const FormNewArea = styled.textarea`
   line-height: 1;
   letter-spacing: -0.14px;
 
-  &::placeholder,
-  &::-moz-placeholder {
+  &::placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
     color: #94A6BE;
     letter-spacing: -0.14px;
 `
+
 export const PopCardCategories = styled.div`
   margin-bottom: 20px;
 `
+
 export const PopCardCategoriesSub = styled.p`
   margin-bottom: 14px;
   color: #000;
@@ -174,6 +183,7 @@ export const PopCardCategoriesSub = styled.p`
   font-weight: 600;
   line-height: 1;
 `
+
 export const FormNewCreateButton = styled.button`
   width: 132px;
   height: 30px;
@@ -187,61 +197,38 @@ export const FormNewCreateButton = styled.button`
   color: #FFFFFF;
   float: right;
 
-  :hover {
+  &:hover {
     background-color: #33399b;
 `
 
 export const CategoriesThemes = styled.div`
-     display: flex;
-     flex-wrap: nowrap;
-     align-items: flex-start;
-     justify-content: flex-start;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
 `
+
 export const RadioLabel = styled.label`
-     font-size: 14px;
-     font-weight: 600;
-     line-height: 14px;
-     white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  white-space: nowrap;
 `
+
 export const WrapperRadio = styled.div`
-     display: inline-block;
-     width: auto;
-     height: 30px;
-     padding: 8px 20px;
-     border-radius: 24px;
-     margin-right: 7px;
-     opacity: ${({$isActive})=> $isActive ? '1' : '0.4'};
-  
+  display: inline-block;
+  width: auto;
+  height: 30px;
+  padding: 8px 20px;
+  border-radius: 24px;
+  margin-right: 7px;
+  opacity: ${({$isActive}) => $isActive ? '1' : '0.4'};
+
+  color: ${({$themeColor}) => topicStyles[$themeColor]?.color || "#ffffff"};
+  background-color: ${({$themeColor}) => topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
+
 `
 
 export const RadioInput = styled.input`
-display: none;
+  display: none;
 `
-
-
-  // ._orange {
-  //   background-color: #FFE4C2;
-  //   color: #FF6D00;
-  // }
-  //
-  // ._green {
-  //   background-color: #B4FDD1;
-  //   color: #06B16E;
-  // }
-  //
-  // ._purple {
-  //   background-color: #E9D4FF;
-  //   color: #9A48F1;
-  // }
-
-  
-  
-
-
-
-  
-
-
-
-
-

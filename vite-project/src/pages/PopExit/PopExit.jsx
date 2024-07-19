@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
-import * as S from "./PopExit.js";
 import { useContext } from "react";
-import { UserContext } from "../../context/userContext.jsx";
+import { Link } from "react-router-dom";
+import * as S from "./PopExit";
+import { UserContext } from "../../context/userContext";
+
 
 function PopExit() {
-const {logoutUser} = useContext(UserContext)
+  const {logoutUser} = useContext(UserContext)
   return (
     <S.PopExit>
       <S.PopExitContainer>
