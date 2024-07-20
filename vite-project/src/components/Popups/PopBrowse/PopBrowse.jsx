@@ -1,6 +1,6 @@
 import {Link, useParams} from "react-router-dom";
-import Calendar from "../../components/Calendar/Calendar";
 import "./PopBrowse.Styles.css";
+import {Calendar} from "../../Calendar/Calendar.jsx";
 
 function PopBrowse() {
   const {id} = useParams();

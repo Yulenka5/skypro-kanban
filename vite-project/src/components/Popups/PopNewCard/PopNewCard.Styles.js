@@ -1,25 +1,6 @@
 import styled from "styled-components";
-import {DayPicker} from "react-day-picker";
-import {topicStyles} from "../../lib/topic";
+import {topicStyles} from "../../../lib/topic.js";
 
-
-export const CalendarBlock = styled(DayPicker)`
-  --rdp-cell-size: 27px;
-  --rdp-caption-font-size: 14px;
-  --rdp-accent-color: rgb(148, 166, 190);
-  --rdp-background-color: rgb(234, 238, 246);
-  --rdp-accent-color-dark: rgb(148, 166, 190);
-  --rdp-accent-color: #94A6BE;
-  --rdp-background-color: #EAEEF6;
-  --rdp-accent-color-dark: #94A6BE;
-  --rdp-background-color-dark: rgb(21, 20, 25);
-  --rdp-outline: 2px solid var(--rdp-accent-color);
-  --rdp-outline-selected: 3px solid var(--rdp-accent-color);
-  --rdp-selected-color: #fff;
-  color: rgb(148, 166, 190);
-  font-size: 10px;
-  font-weight: 400;
-`
 
 export const PopNewCard = styled.div`
   width: 100%;
@@ -219,7 +200,7 @@ export const WrapperRadio = styled.div`
   display: inline-block;
   width: auto;
   height: 30px;
-  padding: 8px 20px;
+  padding: 6px 20px;
   border-radius: 24px;
   margin-right: 7px;
   opacity: ${({$isActive}) => $isActive ? '1' : '0.4'};

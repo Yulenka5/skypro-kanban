@@ -1,10 +1,11 @@
 import * as S from "./PopNewCard.Styles.js";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/userContext";
-import { addNewCard } from "../../api";
-import { CardsContext } from "../../context/cardsContext";
-import { ru } from "date-fns/locale";
+import { UserContext } from "../../../context/userContext.jsx";
+import { addNewCard } from "../../../api.js";
+import { CardsContext } from "../../../context/cardsContext.jsx";
+import {Calendar} from "../../Calendar/Calendar.jsx";
+
 
 
 
@@ -29,9 +30,15 @@ function PopNewCard() {
 
   const onAddNewCard = () => {
     setError("");
-    if (!inputValue.description) {
-      return setError("Введите описание задачи");
-    }
+    if (!inputValue.description)
+      return setError("Введите описание задачи")
+
+    if (!inputValue.topic)
+      return setError("Выберите категорию задачи")
+
+    if (!date)
+      return setError("Выберите дату в календаре")
+
     const title = inputValue.title || "Новая задача";
 
     const newTask = {
@@ -95,7 +102,7 @@ function PopNewCard() {
               </S.PopNewCardForm>
               <S.Calendar>
                 <S.CalendarTtl>Даты</S.CalendarTtl>
-                <S.CalendarBlock locale={ru} weekStartsOn={1} mode="single" selected={date} onSelect={setDate} footer={newDateFormat(date)}/>
+                <Calendar date={date} setDate={setDate} footer={newDateFormat(date)} />
                 </S.Calendar>
             </S.PopNewCardWrap>
             <S.PopCardCategories>

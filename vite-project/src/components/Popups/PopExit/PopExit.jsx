@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import * as S from "./PopExit";
-import { UserContext } from "../../context/userContext";
+import * as S from "./PopExit.Styles.js";
+import { UserContext } from "../../../context/userContext.jsx";
 
 
 function PopExit() {
