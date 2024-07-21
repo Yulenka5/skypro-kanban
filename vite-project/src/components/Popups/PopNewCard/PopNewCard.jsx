@@ -30,6 +30,10 @@ function PopNewCard() {
 
   const onAddNewCard = () => {
     setError("");
+
+    if (!inputValue.title)
+      return setError("Введите заголовок задачи")
+
     if (!inputValue.description)
       return setError("Введите описание задачи")
 
@@ -39,11 +43,8 @@ function PopNewCard() {
     if (!date)
       return setError("Выберите дату в календаре")
 
-    const title = inputValue.title || "Новая задача";
-
     const newTask = {
       ...inputValue,
-      title,
       date,
     };
 
