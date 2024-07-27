@@ -1,9 +1,28 @@
-const token = "bgc0b8awbwas6g5g5k5o5s5w606g37w3cc3bo3b83k39s3co3c83c03ck";
 
-export async function getTasks() {
+
+export async function getTasks(token) {
   try {
     const response = await fetch("https://wedev-api.sky.pro/api/kanban", {
       method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error("произошла проблема с загрузкой");
+    }
+    return data.tasks;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function addNewCard({token, newTask}) {
+  try {
+    const response = await fetch("https://wedev-api.sky.pro/api/kanban", {
+      method: "POST",
+      body: JSON.stringify(newTask),
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -14,7 +33,10 @@ export async function getTasks() {
     const data = await response.json();
     return data.tasks;
   } catch (error) {
-    throw new Error(error.message);
+    if(error.message === "Failed to fetch")
+      throw new Error("Запрос на сервер не выполнен, проверьте подключение к сети интернет")
+    else
+      throw new Error(error.message);
   }
 }
 

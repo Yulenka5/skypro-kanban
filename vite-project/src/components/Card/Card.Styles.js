@@ -51,12 +51,11 @@ export const CardTheme = styled.div`
   height: 20px;
   padding: 5px 14px;
   border-radius: 18px;
-  background-color: ${({ $themeColor }) =>
-    topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
 
-  ${CardText} {
-    color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
-  }
+  color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
+  background-color: ${({ $themeColor }) => topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
+
+  ${CardText};
 `;
 
 export const CardBtn = styled.div`

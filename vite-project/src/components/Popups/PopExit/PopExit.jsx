@@ -1,13 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
-import * as S from "./PopExit.js";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import * as S from "./PopExit.Styles.js";
+import { UserContext } from "../../../context/userContext.jsx";
 
-function PopExit({ setAuth }) {
-  const navigate = useNavigate();
 
-  function handleSubmit() {
-    setAuth(false);
-    navigate("/login");
-  }
+function PopExit() {
+  const {logoutUser} = useContext(UserContext)
   return (
     <S.PopExit>
       <S.PopExitContainer>
@@ -17,7 +15,7 @@ function PopExit({ setAuth }) {
           </S.PopExitTtl>
           <S.PopExitForm>
             <S.PopExitFormGroup>
-              <S.PopExitYes onClick={handleSubmit}>Да, выйти</S.PopExitYes>
+              <S.PopExitYes onClick={logoutUser}>Да, выйти</S.PopExitYes>
               <S.PopExitNo>
                 <Link to="/">Нет, остаться</Link>{" "}
               </S.PopExitNo>

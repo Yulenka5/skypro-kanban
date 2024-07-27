@@ -1,9 +1,9 @@
-import { Link, useParams } from "react-router-dom";
-import Calendar from "../../components/Calendar/Calendar";
+import {Link, useParams} from "react-router-dom";
 import "./PopBrowse.Styles.css";
+import {Calendar} from "../../Calendar/Calendar.jsx";
 
 function PopBrowse() {
-  const { id } = useParams();
+  const {id} = useParams();
   console.log(id);
   return (
     <div className="pop-browse" id="popBrowse">
@@ -55,7 +55,7 @@ function PopBrowse() {
                   ></textarea>
                 </div>
               </form>
-              <Calendar />
+              <Calendar/>
             </div>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>

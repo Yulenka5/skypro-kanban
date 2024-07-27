@@ -1,10 +1,13 @@
 import * as S from "./Header.Styles.js";
-import PopUser from "../PopUser/PopUser";
-import { useState } from "react";
+import PopUser from "../Popups/PopUser/PopUser";
+import {useContext, useState} from "react";
 import { Link } from "react-router-dom";
+import {UserContext} from "../../context/userContext.jsx";
 
-function Header({ addCard }) {
+
+function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const userContext = useContext(UserContext)
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -23,11 +26,11 @@ function Header({ addCard }) {
             </a>
           </S.HeaderLogo> */}
           <S.HeaderNav>
-            <S.HeaderBtnMainNew onClick={addCard}>
-            <a href="#popNewCard">Создать новую задачу</a>
+            <S.HeaderBtnMainNew>
+              <Link to={"/newcard"}>Создать новую задачу</Link>
             </S.HeaderBtnMainNew>
-            <S.HeaderUser onClick={toggleDropdown}>Ivan Ivanov</S.HeaderUser>
-            {isOpen && <PopUser />}
+            <S.HeaderUser onClick={toggleDropdown}>{userContext.user.name}</S.HeaderUser>
+            {isOpen && <PopUser user={userContext.user} />}
           </S.HeaderNav>
         </S.HeaderBlock>
       </S.Container>

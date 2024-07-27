@@ -78,6 +78,11 @@ export const PopUserButton = styled.button`
   border-radius: 4px;
   border: 1px solid #565eef;
 
+  position: absolute;
+  left: 34px;
+  bottom: 34px;
+  transform: translateX(50%);
+
   &:hover {
     background-color: #33399b;
     color: #ffffff;
