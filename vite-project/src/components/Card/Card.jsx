@@ -21,9 +21,9 @@ function Card({ id, topic, title, date }) {
           </Link>
         </S.CardGroup>
         <S.CardContent>
-          <a href="" target="_blank">
+          <Link to={`/card/${id}`}>
             <S.CardTitle>{title}</S.CardTitle>
-          </a>
+          </Link>
           <S.CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"

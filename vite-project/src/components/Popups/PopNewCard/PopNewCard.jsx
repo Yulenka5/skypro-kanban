@@ -10,23 +10,28 @@ import {Calendar} from "../../Calendar/Calendar.jsx";
 
 
 function PopNewCard() {
-  const [date, setDate] = useState(new Date)
-  const [error, setError] = useState("");
-  const { user } = useContext(UserContext);
-  const { setCards } = useContext(CardsContext);
-  const navigate = useNavigate();
+  // const [date, setDate] = useState(new Date())
+  const [error, setError] = useState("")
+  const { user } = useContext(UserContext)
+  const { setCards } = useContext(CardsContext)
+  const navigate = useNavigate()
 
   const [inputValue, setInputValue] = useState({
     topic: "",
     title: "",
     description: "",
     status: "Без статуса",
-  });
+    date: new Date(),
+  })
 
   const onChangeInput = (e) => {
     const { value, name } = e.target;
     setInputValue({ ...inputValue, [name]: value });
-  };
+  }
+
+  const setDate = (date) => {
+    setInputValue({ ...inputValue, date });
+  }
 
   const onAddNewCard = () => {
     setError("");
@@ -40,15 +45,15 @@ function PopNewCard() {
     if (!inputValue.topic)
       return setError("Выберите категорию задачи")
 
-    if (!date)
+    if (!inputValue.date)
       return setError("Выберите дату в календаре")
 
-    const newTask = {
-      ...inputValue,
-      date,
-    };
+    // const newTask = {
+    //   ...inputValue,
+    //   date,
+    // };
 
-    addNewCard({ token: user.token, newTask })
+    addNewCard({ token: user.token, task: inputValue })
       .then((res) => {
         setCards(res);
         navigate("/");
@@ -103,7 +108,7 @@ function PopNewCard() {
               </S.PopNewCardForm>
               <S.Calendar>
                 <S.CalendarTtl>Даты</S.CalendarTtl>
-                <Calendar date={date} setDate={setDate} footer={newDateFormat(date)} />
+                <Calendar date={inputValue.date} setDate={setDate} footer={newDateFormat(inputValue.date)} />
                 </S.Calendar>
             </S.PopNewCardWrap>
             <S.PopCardCategories>
