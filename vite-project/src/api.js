@@ -18,11 +18,11 @@ export async function getTasks(token) {
   }
 }
 
-export async function addNewCard({token, newTask}) {
+export async function addNewCard({token, task}) {
   try {
     const response = await fetch("https://wedev-api.sky.pro/api/kanban", {
       method: "POST",
-      body: JSON.stringify(newTask),
+      body: JSON.stringify(task),
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -82,5 +82,48 @@ export async function signUp({login, name, password}) {
       return  ("Запрос на сервер не выполнен, проверьте подключение к сети интернет")
     else 
     return (error.message);
+  }
+}
+
+export async function deleteCard({token, id}) {
+  try {
+    const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("произошла проблема с удалением задачи");
+    }
+    const data = await response.json();
+    return data.tasks;
+  } catch (error) {
+    if (error.message === "Failed to fetch")
+      throw new Error("Запрос на сервер не выполнен, проверьте подключение к сети интернет")
+    else
+      throw new Error(error.message);
+  }
+}
+
+export async function editCard({token, task}) {
+  try {
+    const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${task._id}`, {
+      method: "PUT",
+      body: JSON.stringify(task),
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error("произошла проблема с редактированием задачи");
+    }
+    return data.tasks;
+  } catch (error) {
+    if (error.message === "Failed to fetch")
+      throw new Error("Запрос на сервер не выполнен, проверьте подключение к сети интернет")
+    else
+      throw new Error(error.message);
   }
 }
