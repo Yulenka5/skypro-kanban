@@ -103,6 +103,7 @@ export const StatusTheme = styled.div`
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+  font-size: 14px;
   color: ${({$isActive}) => $isActive ? '#FFFFFF' : '#94A6BE'};
   background: ${({$isActive}) => $isActive ? '#94A6BE' : ''};
 `
