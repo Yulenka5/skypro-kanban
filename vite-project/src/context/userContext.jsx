@@ -13,7 +13,7 @@ function getLocalStorage() {
 }
 
 export const UserProvider = ({ children }) => {
-  const [token, setToken] = useState("bgc0b8awbwas6g5g5k5o5s5w606g37w3cc3bo3b83k39s3co3c83c03ck")
+  // const [token, setToken] = useState("bgc0b8awbwas6g5g5k5o5s5w606g37w3cc3bo3b83k39s3co3c83c03ck")
   const [user, setUser] = useState(getLocalStorage());
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, token, loginUser, logoutUser }}>
+    <UserContext.Provider value={{ ...user, loginUser, logoutUser }}>
       {children}
     </UserContext.Provider>
   );

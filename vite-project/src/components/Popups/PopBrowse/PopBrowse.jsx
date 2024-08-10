@@ -12,7 +12,7 @@ function PopBrowse() {
   const {id} = useParams()
   const navigate = useNavigate()
   const [isBrowsing, setIsBrowsing] = useState(true)
-  const { user } = useContext(UserContext)
+  const user = useContext(UserContext)
   const { cards, setCards } = useContext(CardsContext)
   const [error, setError] = useState("")
 
@@ -25,7 +25,6 @@ function PopBrowse() {
   })
 
   function setInputValue(value) {
-    console.log(value)
     __setInputValue(value)
   }
 
@@ -43,15 +42,7 @@ function PopBrowse() {
 
   useEffect(() => {
     const task = cards.filter((card) => card._id === id)[0]
-    console.log(task.date)
     setInputValue({...task, date: new Date(task.date)})
-    // setInputValue({
-    //   topic: task.topic,
-    //   title: task.title,
-    //   description: task.description,
-    //   status: task.status,
-    //   date: new Date(task.date),
-    // })
   }, [])
 
   function startEditingTask() {

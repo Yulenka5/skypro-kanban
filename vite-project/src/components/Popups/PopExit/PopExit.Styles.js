@@ -49,7 +49,14 @@ export const PopExitTtl = styled.div`
   margin-bottom: 20px;
 `;
 
-export const PopExitH = styled.h2``;
+export const PopExitH = styled.h2`
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: -0.4px;
+  margin-bottom: 20px;
+`;
 
 export const PopExitForm = styled.form``;
 

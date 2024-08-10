@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signIn } from "../../api";
 import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
+import {Wrapper} from "../../Global.Styles.js";
 
 
 function Login() {
@@ -37,7 +38,7 @@ function Login() {
   }
 
   return (
-    <S.Wrapper>
+    <Wrapper>
       <S.ContainerSignin>
         <S.Modal>
           <S.ModalBlock>
@@ -69,7 +70,7 @@ function Login() {
           </S.ModalBlock>
         </S.Modal>
       </S.ContainerSignin>
-    </S.Wrapper>
+    </Wrapper>
   );
 }
 

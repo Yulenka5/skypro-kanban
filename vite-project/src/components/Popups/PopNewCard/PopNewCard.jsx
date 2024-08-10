@@ -10,9 +10,8 @@ import {Calendar} from "../../Calendar/Calendar.jsx";
 
 
 function PopNewCard() {
-  // const [date, setDate] = useState(new Date())
   const [error, setError] = useState("")
-  const { user } = useContext(UserContext)
+  const user = useContext(UserContext)
   const { setCards } = useContext(CardsContext)
   const navigate = useNavigate()
 
@@ -47,11 +46,6 @@ function PopNewCard() {
 
     if (!inputValue.date)
       return setError("Выберите дату в календаре")
-
-    // const newTask = {
-    //   ...inputValue,
-    //   date,
-    // };
 
     addNewCard({ token: user.token, task: inputValue })
       .then((res) => {
