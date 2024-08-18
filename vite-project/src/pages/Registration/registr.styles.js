@@ -1,9 +1,4 @@
 import styled from "styled-components";
-// div,
-// button,
-// a {
-//   font-family: "Roboto", sans-serif;
-// }
 
 export const Wrapper = styled.div`
   width: 100%;
