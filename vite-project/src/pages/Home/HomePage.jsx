@@ -1,4 +1,4 @@
-import { Wrapper, GlobalStyle } from "../../Global.Styles.js";
+import { Wrapper } from "../../Global.Styles.js";
 import Main from "../../components/Main/Main.jsx";
 import Header from "../../components/Header/Header.jsx";
 import { useContext, useEffect, useState } from "react";
@@ -16,7 +16,7 @@ function HomePage() {
 
   useEffect(() => {
     setIsLoading(true)
-    getTasks(userContext.user.token)
+    getTasks(userContext.token)
       .then((res) => {
         setCards(res);
       })
@@ -31,7 +31,6 @@ function HomePage() {
 
   return (
     <>
-      <GlobalStyle />
       <Wrapper>
         <Outlet />
         <Header />

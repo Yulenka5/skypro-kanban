@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./PopUser.Styles.js";
 
-function PopUser({ user }) {
+function PopUser({ userContext }) {
   const navigate = useNavigate()
 
   function handleShowQuestionAboutExit() {
@@ -10,12 +10,8 @@ function PopUser({ user }) {
 
   return (
     <S.HeaderPopUserSet>
-      <S.PopUserSetName>{user.name}</S.PopUserSetName>
-      <S.PopUserSetMail>{user.login}</S.PopUserSetMail>
-      {/*<S.PopUserSetTheme>*/}
-      {/*  <p>Темная тема</p>*/}
-      {/*  <input type="checkbox" name="checkbox" />*/}
-      {/*</S.PopUserSetTheme>*/}
+      <S.PopUserSetName>{userContext.name}</S.PopUserSetName>
+      <S.PopUserSetMail>{userContext.login}</S.PopUserSetMail>
       <S.PopUserButton onClick={handleShowQuestionAboutExit}>Выйти</S.PopUserButton>
     </S.HeaderPopUserSet>
   );

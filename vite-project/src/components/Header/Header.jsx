@@ -20,17 +20,12 @@ function Header() {
               <img src="/logo.png" alt="logo" />
             </Link>
           </S.HeaderLogo>
-          {/* <S.HeaderLogo>
-            <a href="" target="_self">
-              <img src="/logo_dark.png" alt="logo" />
-            </a>
-          </S.HeaderLogo> */}
           <S.HeaderNav>
             <S.HeaderBtnMainNew>
               <Link to={"/newcard"}>Создать новую задачу</Link>
             </S.HeaderBtnMainNew>
-            <S.HeaderUser onClick={toggleDropdown}>{userContext.user.name}</S.HeaderUser>
-            {isOpen && <PopUser user={userContext.user} />}
+            <S.HeaderUser onClick={toggleDropdown}>{userContext.name}</S.HeaderUser>
+            {isOpen && <PopUser userContext={userContext} />}
           </S.HeaderNav>
         </S.HeaderBlock>
       </S.Container>
